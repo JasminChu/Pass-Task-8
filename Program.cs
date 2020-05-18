@@ -110,8 +110,204 @@ namespace Snake
             return height;
         }
 
+        static bool collisionObstacle(int level, List<Position> obstacles, Position snakeNewHead)
+        {
+            if (level == 2)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 1;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
 
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 1;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
 
+                snakeHead = snakeNewHead;
+                snakeHead.row += 1;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 1;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+            }
+            else if (level == 3)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 2;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 2;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.row += 2;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 2;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+            }
+            else if (level == 4)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 3;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 3;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.row += 3;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 3;
+                if (obstacles.Contains(snakeHead))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        static bool collisionFood(int level, Position snakeNewHead, Position food)
+        {
+            if (level == 1)
+            {
+                if (food.col == snakeNewHead.col && food.row == snakeNewHead.row)
+                {
+                    return true;
+                }
+            }
+            else if (level == 2)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 1;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 1;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.row += 1;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 1;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+            }
+            else if (level == 3)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 2;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 2;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.row += 2;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 2;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+            }
+            else if (level == 4)
+            {
+                Position snakeHead = snakeNewHead;
+                snakeHead.col += 3;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.col -= 3;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeHead.row += 3;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+
+                snakeHead = snakeNewHead;
+                snakeNewHead.row -= 3;
+                if (food.col == snakeHead.col && food.row == snakeHead.row)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         static void Main(string[] args)
         {
@@ -151,7 +347,7 @@ namespace Snake
                     //----------------------------------------Life-----------------------------------
                     int life = 3;
                     //--------------------------------------level------------------------------------
-                    int level = 0;
+                    int level = 1;
 
                     //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNnnn
                     int supriseFoodDissapearTime = 3390;
@@ -281,6 +477,17 @@ namespace Snake
                         Console.Write("*");
                     }
 
+                    if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
+                    {
+                        level += 1;
+                        Scoreboard.WriteAt("Your Level", 0, 8);
+                        Scoreboard.WriteAt(level.ToString(), 0, 9);
+                        directions[0].col += 1;
+                        directions[1].col -= 1;
+                        directions[2].row += 1;
+                        directions[3].row -= 1;
+                    }
+
                     //The following code will run until the program stop
                     while (true)
                     {
@@ -308,6 +515,50 @@ namespace Snake
                             {
                                 if (direction != up) direction = down;
                             }
+
+                            //Only arrow key can display
+                            if (userInput.Key != ConsoleKey.LeftArrow || userInput.Key != ConsoleKey.RightArrow || userInput.Key != ConsoleKey.UpArrow || userInput.Key != ConsoleKey.DownArrow)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.White;
+
+                                if (File.Exists("winner.txt") == true)
+                                {
+                                    string previouswinner = File.ReadAllText("winner.txt");
+                                    Scoreboard.WriteAt("Previous Winner: " + previouswinner, 0, 0);
+                                }
+
+                                Scoreboard.WriteAt("Your Current Score", 0, 1);
+                                Scoreboard.WriteScore(_scorecount, 0, 2);
+                                Scoreboard.WriteAt("Your Remains Life", 0, 3);
+                                Scoreboard.WriteAt(life.ToString(), 0, 4);
+                                Scoreboard.WriteAt("Your Level", 0, 8);
+                                Scoreboard.WriteAt(level.ToString(), 0, 9);
+
+                                foreach (Position position in snakeElements)
+                                {
+                                    Console.SetCursorPosition(position.col, position.row);
+                                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                                    Console.Write("*");
+                                }
+
+                                foreach (Position obstacle in obstacles)
+                                {
+
+                                    //drawing obstacles
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.SetCursorPosition(obstacle.col, obstacle.row);
+                                    Console.Write("=");
+                                }
+
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.SetCursorPosition(food.col, food.row);
+                                Console.Write("@");
+
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.SetCursorPosition(supriseFood.col, supriseFood.row);
+                                Console.Write("?");
+                            }
                         }
 
                         //manage the position of the snake head if the snake exceed the width or height of the console window
@@ -330,7 +581,7 @@ namespace Snake
 
                         if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead)
                             || (snakeNewHead.row >= Console.WindowHeight) || (snakeNewHead.col >= Console.WindowWidth)
-                            || (snakeNewHead.col < 0) || (snakeNewHead.row < 0))
+                            || (snakeNewHead.col < 0) || (snakeNewHead.row < 0) || collisionObstacle(level, obstacles, snakeNewHead) == true)
                         {
                             //Remove the obstacles which the snake has eaten
                             obstacles.Remove(snakeNewHead);
@@ -413,8 +664,11 @@ namespace Snake
                         if (direction == down) Console.Write("v");
 
                         //when the snake eat the food
-                        if (snakeNewHead.col == food.col && snakeNewHead.row == food.row)
+                        if (collisionFood(level, snakeNewHead, food) == true)
                         {
+                            Console.SetCursorPosition(food.col, food.row); //the cursor position will set to the food position.
+                            Console.Write(" ");
+
                             _scorecount += 1;
                             Scoreboard.WriteAt("Your Current Score", 0, 1);
                             Scoreboard.WriteScore(_scorecount, 0, 2);
@@ -447,7 +701,7 @@ namespace Snake
                             }
 
                             //----------------------------------------level---------------------------------------
-                            if ((_scorecount >= 3 && _scorecount != 5) || (_scorecount >= 6 && _scorecount != 8) || _scorecount >= 9)
+                            if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
                             {
                                 level += 1;
                                 Scoreboard.WriteAt("Your Level", 0, 8);
@@ -471,8 +725,11 @@ namespace Snake
 
                         //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
                         //when the snake eat the suprise food
-                        else if (snakeNewHead.col == supriseFood.col && snakeNewHead.row == supriseFood.row)
+                        else if (collisionFood(level, snakeNewHead, supriseFood) == true)
                         {
+                            Console.SetCursorPosition(supriseFood.col, supriseFood.row); //the cursor position will set to the food position.
+                            Console.Write(" ");
+
                             _scorecount += 2;
                             Scoreboard.WriteAt("Your Current Score", 0, 1);
                             Scoreboard.WriteScore(_scorecount, 0, 2);
@@ -503,7 +760,7 @@ namespace Snake
                                 Environment.Exit(0);
                             }
                             //----------------------------------------level---------------------------------------
-                            if ((_scorecount >= 3 && _scorecount != 5) || (_scorecount >= 6 && _scorecount != 8) || _scorecount >= 9)
+                            if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
                             {
                                 level += 1;
                                 Scoreboard.WriteAt("Your Level", 0, 8);
