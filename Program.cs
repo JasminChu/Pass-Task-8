@@ -57,11 +57,12 @@ namespace Snake
             while (snakeElements.Contains(food) || obstacles.Contains(food));
             Console.SetCursorPosition(food.col, food.row);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("@");
+            Console.Write("♥♥");
             return food;
         }
-
         //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+
+        
         static Position CreateSupriseFood(Position food, Random randomNumbersGenerator,
            Queue<Position> snakeElements, List<Position> obstacles)
         {
@@ -96,9 +97,10 @@ namespace Snake
             obstacles.Add(obstacle); //then obstacle will be generated
             Console.SetCursorPosition(obstacle.col, obstacle.row);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("=");
+            Console.Write("\u2593");
             return obstacle;
         }
+        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
         //Print words at center
         static int PrintAtCenter(string printout, int height)
@@ -311,6 +313,7 @@ namespace Snake
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
             Console.WriteLine("WELCOME TO SNAKE GAME!");
             Console.WriteLine("Press Enter Key to Continue!");
@@ -349,7 +352,7 @@ namespace Snake
                     //--------------------------------------level------------------------------------
                     int level = 1;
 
-                    //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNnnn
+          
                     int supriseFoodDissapearTime = 3390;
                     int negativePoints = 0;
                     int winningscore = 3;
@@ -438,7 +441,8 @@ namespace Snake
                         //drawing obstacles
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.SetCursorPosition(obstacle.col, obstacle.row);
-                        Console.Write("=");
+                        Console.Write("\u2593");
+                        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
                     }
 
                     //creating snake body (5 "*")
@@ -461,7 +465,7 @@ namespace Snake
                     food = CreateFood(food, randomNumbersGenerator, snakeElements, obstacles);
                     lastFoodTime = Environment.TickCount;
 
-                    //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+                 
                     //The position is create randomly
                     //creating suprising food in the game
                     Position supriseFood = new Position();
@@ -664,8 +668,21 @@ namespace Snake
                         if (direction == down) Console.Write("v");
 
                         //when the snake eat the food
-                        if (collisionFood(level, snakeNewHead, food) == true)
+                        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+                        if ((collisionFood(level, snakeNewHead, food) == true) || (snakeNewHead.col == food.col && snakeNewHead.row == food.row) || (snakeNewHead.col == food.col + 1 && snakeNewHead.row == food.row))
                         {
+                             if (snakeNewHead.col == food.col)
+                                {
+                                    Console.SetCursorPosition(food.col + 1, food.row);
+                                    Console.Write("  ");
+                                }
+
+                                if (snakeNewHead.col == food.col+1)
+                                {
+                                    Console.SetCursorPosition(food.col, food.row);
+                                    Console.Write("  ");
+                                }
+                            
                             Console.SetCursorPosition(food.col, food.row); //the cursor position will set to the food position.
                             Console.Write(" ");
 
@@ -723,7 +740,7 @@ namespace Snake
                             obstacle = CreateObstacle(food, obstacle, randomNumbersGenerator, snakeElements, obstacles);
                         }
 
-                        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+                        
                         //when the snake eat the suprise food
                         else if (collisionFood(level, snakeNewHead, supriseFood) == true)
                         {
@@ -803,7 +820,6 @@ namespace Snake
                             lastFoodTime = Environment.TickCount; //The lastFoodTime will reset to the present time
                         }
 
-                        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
                         else if (Environment.TickCount - lastFoodTime >= supriseFoodDissapearTime)
                         {
                             negativePoints = negativePoints + 50;
@@ -819,7 +835,6 @@ namespace Snake
                     }
                 }
 
-                //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
                 else if (selectedMenuItem == "Help")
                 {
                     Console.WriteLine("WELCOME TO SNAKE GAME!");
@@ -831,7 +846,6 @@ namespace Snake
                     Console.Read();
                 }
 
-                //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
                 else if (selectedMenuItem == "Exit")
                 {
                     Environment.Exit(0);
@@ -840,7 +854,6 @@ namespace Snake
             }
         }
 
-        //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
         static string drawMenu(List<string> items)
         {
             for (int i = 0; i < items.Count; i++)
