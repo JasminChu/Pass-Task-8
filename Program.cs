@@ -674,13 +674,13 @@ namespace Snake
                              if (snakeNewHead.col == food.col)
                                 {
                                     Console.SetCursorPosition(food.col + 1, food.row);
-                                    Console.Write("  ");
+                                    Console.Write("    ");
                                 }
 
                                 if (snakeNewHead.col == food.col+1)
                                 {
                                     Console.SetCursorPosition(food.col, food.row);
-                                    Console.Write("  ");
+                                    Console.Write("    ");
                                 }
                             
                             Console.SetCursorPosition(food.col, food.row); //the cursor position will set to the food position.
