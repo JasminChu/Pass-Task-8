@@ -355,7 +355,7 @@ namespace Snake
           
                     int supriseFoodDissapearTime = 3390;
                     int negativePoints = 0;
-                    int winningscore = 3;
+                    int winningscore = 10;
                     int _scorecount = 0;
                     
                     Console.WriteLine("Name: ");
