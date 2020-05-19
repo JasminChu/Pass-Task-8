@@ -552,12 +552,12 @@ namespace Snake
                                     //drawing obstacles
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.SetCursorPosition(obstacle.col, obstacle.row);
-                                    Console.Write("=");
+                                    Console.Write("\u2593");
                                 }
 
                                 Console.ForegroundColor = ConsoleColor.Yellow;
                                 Console.SetCursorPosition(food.col, food.row);
-                                Console.Write("@");
+                                Console.Write("♥♥");
 
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 Console.SetCursorPosition(supriseFood.col, supriseFood.row);
