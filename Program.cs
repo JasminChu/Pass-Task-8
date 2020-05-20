@@ -397,8 +397,8 @@ namespace Snake
                     Scoreboard.WriteScore(_scorecount, 0, 2);
                     Scoreboard.WriteAt("Your Remains Life", 0, 3);
                     Scoreboard.WriteAt(life.ToString(), 0, 4);
-                    Scoreboard.WriteAt("Your Level", 0, 8);
-                    Scoreboard.WriteAt(level.ToString(), 0, 9);
+                    Scoreboard.WriteAt("Your Level", 0, 5);
+                    Scoreboard.WriteAt(level.ToString(), 0, 6);
 
 
                     //Array which is a linear data structure is used 
@@ -456,7 +456,7 @@ namespace Snake
                     Queue<Position> snakeElements = new Queue<Position>();
                     for (int i = 0; i <= 3; i++)
                     {
-                        snakeElements.Enqueue(new Position(5, i));
+                        snakeElements.Enqueue(new Position(7, i));
                     }
 
                     //The position is create randomly
@@ -484,8 +484,8 @@ namespace Snake
                     if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
                     {
                         level += 1;
-                        Scoreboard.WriteAt("Your Level", 0, 8);
-                        Scoreboard.WriteAt(level.ToString(), 0, 9);
+                        Scoreboard.WriteAt("Your Level", 0, 5);
+                        Scoreboard.WriteAt(level.ToString(), 0, 6);
                         directions[0].col += 1;
                         directions[1].col -= 1;
                         directions[2].row += 1;
@@ -536,8 +536,8 @@ namespace Snake
                                 Scoreboard.WriteScore(_scorecount, 0, 2);
                                 Scoreboard.WriteAt("Your Remains Life", 0, 3);
                                 Scoreboard.WriteAt(life.ToString(), 0, 4);
-                                Scoreboard.WriteAt("Your Level", 0, 8);
-                                Scoreboard.WriteAt(level.ToString(), 0, 9);
+                                Scoreboard.WriteAt("Your Level", 0, 5);
+                                Scoreboard.WriteAt(level.ToString(), 0, 6);
 
                                 foreach (Position position in snakeElements)
                                 {
@@ -576,10 +576,10 @@ namespace Snake
                         //Game over when snake hits the console window
                         //the game will over if the snake eat its body OR eat the obstacles
                         //Stack which is a linear data structure is used
-                        if (snakeNewHead.row < 5 && snakeNewHead.col < 40)
+                        if (snakeNewHead.row < 6 && snakeNewHead.col < 40)
                         {
                             snakeNewHead.col = 0;
-                            snakeNewHead.row = 5;
+                            snakeNewHead.row = 7;
                             direction = right;
                         }
 
@@ -595,7 +595,7 @@ namespace Snake
                             player1.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "/die.wav";
                             player1.PlaySync();
                             direction = right;
-                            snakeNewHead.row = 5;
+                            snakeNewHead.row = 7;
                             snakeNewHead.col = 0;
 
                             //----------------------------------------life---------------------------------------
@@ -721,8 +721,8 @@ namespace Snake
                             if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
                             {
                                 level += 1;
-                                Scoreboard.WriteAt("Your Level", 0, 8);
-                                Scoreboard.WriteAt(level.ToString(), 0, 9);
+                                Scoreboard.WriteAt("Your Level", 0, 5);
+                                Scoreboard.WriteAt(level.ToString(), 0, 6);
                                 directions[0].col += 1;
                                 directions[1].col -= 1;
                                 directions[2].row += 1;
@@ -780,8 +780,8 @@ namespace Snake
                             if ((level == 1 && _scorecount >= 3 && _scorecount < 5) || (level == 2 && _scorecount >= 6 && _scorecount < 8) || (level == 3 && _scorecount >= 9 && _scorecount < 10))
                             {
                                 level += 1;
-                                Scoreboard.WriteAt("Your Level", 0, 8);
-                                Scoreboard.WriteAt(level.ToString(), 0, 9);
+                                Scoreboard.WriteAt("Your Level", 0, 5);
+                                Scoreboard.WriteAt(level.ToString(), 0, 6);
                                 directions[0].col += 1;
                                 directions[1].col -= 1;
                                 directions[2].row += 1;
