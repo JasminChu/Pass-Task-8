@@ -355,7 +355,7 @@ namespace Snake
           
                     int supriseFoodDissapearTime = 3390;
                     int negativePoints = 0;
-                    int winningscore = 10;
+                    int winningscore = 3;
                     int _scorecount = 0;
                     
                     Console.WriteLine("Name: ");
@@ -375,7 +375,7 @@ namespace Snake
                             _scorecount = last;
                         }
 
-                        if (last >= winningscore)
+                        if (last >= 3)
                         {
                             winningscore = 10;
                         }
@@ -627,6 +627,7 @@ namespace Snake
                             //------------------------------------------------GameOver----------------------------------------------------
                             else
                             {
+                                File.WriteAllText("winner.txt", winner + " with score " + _scorecount);
                                 Console.Clear();
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 string gameover = "Game over!";
